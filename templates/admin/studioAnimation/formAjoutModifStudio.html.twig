@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{% if (app.request.attributes.get('_route')=="admin_studioAnimation_ajouter")%}
+Ajout
+{% else %}
+Modif
+{% endif %}
+ d'un Studios d'animation!{% endblock %}
+
+{% block body %}
+<h1 class="pt-2 text-center">
+{% if (app.request.attributes.get('_route')=="admin_studioAnimation_ajouter")%}
+Ajouter
+{% else %}
+Modifier
+{% endif %}
+ studios d'animation</h1>
+{{form_start(formStudioAnimation)}}
+{{form_row(formStudioAnimation.nomStudio)}}
+{{form_row(formStudioAnimation.Anime)}}
+<div class="col">
+    <a href="{{path('admin_studioAnimation')}}" class="btn btn-danger">Annuler</a>
+    <input type="submit" class="btn btn-success" value="valider">
+</div>
+{{form_end(formStudioAnimation)}}
+
+{% endblock %}

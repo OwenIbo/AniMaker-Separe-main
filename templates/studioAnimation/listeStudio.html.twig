@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Studio d'animé!{% endblock %}
+
+{% block body %}
+<h1 class="pt-2 text-center">Liste des studios d'animation</h1>
+<hr>
+<div class="row pt-2">
+  {% for studioAnimation in listeStudioAnimation %}
+  <div class="col-sm-12 col-md-12 col-lg-4 col-xl-3">
+    <div class="card mb-3">
+      <div class="card border-primary mb-3" style="max-width: 20rem;">
+        <div class="card-header">{{studioAnimation.Anime|length}} animé </div>
+        <div class="card-body">
+          <h4 class="card-title">{{studioAnimation.nomStudio}}</h4>
+        </div>
+      </div>
+    </div>
+  </div>  
+  {% endfor %}
+  <div class="navigation mx-auto">
+    {{ knp_pagination_render(listeStudioAnimation) }}
+  </div>
+</div> 
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Studios d'animation!{% endblock %}
+
+{% block body %}
+<h1 class="pt-2 text-center">Gestion des studios d'animation</h1>
+<a href="{{path('admin_studioAnimation_ajouter')}}" class="btn btn-success">Ajouter un Studio</a>
+{{form_start(formFiltreStudio)}}
+  {{form_row(formFiltreStudio.nom)}}
+  <button type="submit" class="btn btn-outline-secondary">Rechercher</button>
+{{form_end(formFiltreStudio)}}
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col-4">Nom du studio</th>
+      <th scope="col-6">Liste d'animé</th>
+      <th scope="col-2">Modification</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for studioAnimation in listeStudioAnimation %}
+    <tr>
+      <th scope="col-4">{{studioAnimation.nomStudio}}</th>
+      <th scope="col-6">
+        {#{% for anime in studioAnimation %}
+          <p>{{anime.nom}}</p>
+        {% endfor %}#}
+        {{studioAnimation.anime|length}}
+      </th>
+      <th scope="col-2">
+      <a href="{{path('admin_studioAnimation_modifier',{'id': studioAnimation.id})}}" class="btn btn-primary"></a>
+      <a href="{{path('admin_studioAnimation_supprimer',{'id': studioAnimation.id})}}" class="btn btn-danger"></a>
+      </th>
+      </th>
+    </tr>
+  {% endfor %}
+  <thead>
+</table>
+  <div class="navigation mx-auto">
+    {{ knp_pagination_render(listeStudioAnimation) }}
+  </div>
+
+{% endblock %}
